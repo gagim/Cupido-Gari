@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="colorAccent">#ffa500</color>
+    <color name="laranja">#ffcc33</color>
+    <color name="perfil">#000000</color>
+    <color name="contato">#e8e8e8</color>
+    <color name="opaco">#88676767</color>
+</resources>

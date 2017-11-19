@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name" color="#FFFFFF">Cupido gari</string>
+    <string name="action_settings">Configurações</string>
+    <string name="item_pesquisa">pesquisar</string>
+    <string name="item_add_pessoa">add</string>
+    <string name="item_sair">Sair</string>
+    <string name="title_activity_cadastro">Cadastro</string>
+    <string name="title_activity_validacao_">Validacao_Activity</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

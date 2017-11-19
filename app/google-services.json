@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "853120855130",
+    "firebase_url": "https://cupido-gari.firebaseio.com",
+    "project_id": "cupido-gari",
+    "storage_bucket": "cupido-gari.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853120855130:android:27100585aefa82d3",
+        "android_client_info": {
+          "package_name": "com.cursoandroid.cupidogari.cupidogari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853120855130-nrae499vpco167ae9pf0ha9424vag58b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cursoandroid.cupidogari.cupidogari",
+            "certificate_hash": "f47eea38b98265ada47de5f3919ad32832d78eb5"
+          }
+        },
+        {
+          "client_id": "853120855130-dkmh4p8p251ff1fv2mcdbklakkso5b92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN26kj4IvqT2nGCCjEiPBS4af0UKlaZ2Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853120855130-dkmh4p8p251ff1fv2mcdbklakkso5b92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
