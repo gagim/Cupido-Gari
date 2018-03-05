@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class ConversasActivity extends Activity {
+public class ConversasActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
@@ -40,6 +41,7 @@ public class ConversasActivity extends Activity {
 
     private ImageButton btn_mensagem;
     private EditText edit_mensagem;
+    private TextView txtMensagem;
 
     private ListView listView;
     private ArrayList<Mensagem> mensagens;
@@ -56,6 +58,7 @@ public class ConversasActivity extends Activity {
         toolbar = (Toolbar) findViewById(R.id.tb_conversa);
         btn_mensagem = (ImageButton) findViewById(R.id.img_conversas);
         edit_mensagem = (EditText) findViewById(R.id.edit_conversas);
+        txtMensagem = (TextView) findViewById(R.id.txtMensagem);
         listView = (ListView) findViewById(R.id.lv_conversas);
 
         Preferencias preferencias = new Preferencias(ConversasActivity.this);
@@ -76,6 +79,7 @@ public class ConversasActivity extends Activity {
 
         toolbar.setTitle(nomeUsuario);
         toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
+        setSupportActionBar(toolbar);
 
 
         mensagens = new ArrayList<>();
@@ -94,6 +98,9 @@ public class ConversasActivity extends Activity {
 
                 for(DataSnapshot dado: dataSnapshot.getChildren()){
                     Mensagem mensagem = dado.getValue(Mensagem.class);
+                    if (mensagem == null){
+                        txtMensagem.setVisibility(View.GONE);
+                    }
                     mensagens.add(mensagem);
                 }
                 adapter.notifyDataSetChanged();
@@ -211,7 +218,4 @@ public class ConversasActivity extends Activity {
         super.onStop();
         firebase.removeEventListener(valueEventListenerMensagem);
     }
-
-
-
 }

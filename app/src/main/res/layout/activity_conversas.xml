@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/contato"
+    android:background="@color/colorAccent"
     tools:context="com.cursoandroid.cupidogari.cupidogari.ConversasActivity">
 
     <include
@@ -19,10 +18,21 @@
         android:id="@+id/lv_conversas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/mensagem"
         android:layout_below="@+id/tb_conversa"
         android:divider="@android:color/transparent"
-        android:padding="8dp"
-        android:layout_above="@+id/mensagem"></ListView>
+        android:padding="8dp"></ListView>
+
+    <TextView
+        android:id="@+id/txtMensagem"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@+id/lv_conversas"
+        android:layout_below="@+id/lv_conversas"
+        android:layout_centerHorizontal="true"
+        android:text="Sem mensagem!"
+        android:textColor="@color/perfil"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/mensagem"
@@ -34,20 +44,25 @@
 
         <EditText
             android:id="@+id/edit_conversas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:hint="Digite sua mensagem!"
-            android:textColorLink="@android:color/holo_orange_dark"
-            android:textIsSelectable="false" />
+            android:paddingRight="10dp"
+            android:textIsSelectable="false"
+            android:theme="@style/TextLabel" />
 
         <ImageButton
             android:id="@+id/img_conversas"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.15"
-            android:theme="@android:color/holo_orange_dark"
-            android:src="@drawable/ic_send" />
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/edit_mensagem"
+            android:src="@drawable/ic_send"
+            android:theme="@android:color/holo_orange_dark" />
     </LinearLayout>
 
 </RelativeLayout>

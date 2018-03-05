@@ -1,5 +1,6 @@
 package com.cursoandroid.cupidogari.cupidogari;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private String identificadorContato;
     private DatabaseReference firebase;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

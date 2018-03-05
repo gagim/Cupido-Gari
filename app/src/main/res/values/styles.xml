@@ -8,5 +8,13 @@
 
     </style>
 
+    <style name="TextLabel" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/contato</item>
+        <item name="android:textSize">20sp</item>
+        <item name="colorAccent">@color/contato</item>
+        <item name="colorControlNormal">@color/contato</item>
+        <item name="colorControlActivated">@color/contato</item>
+    </style>
+
 
 </resources>
