@@ -1,11 +1,9 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#FF7F00</item>
         <item name="colorPrimaryDark">#000000</item>
-
     </style>
 
     <style name="TextLabel" parent="Base.TextAppearance.AppCompat">
@@ -15,6 +13,5 @@
         <item name="colorControlNormal">@color/contato</item>
         <item name="colorControlActivated">@color/contato</item>
     </style>
-
 
 </resources>

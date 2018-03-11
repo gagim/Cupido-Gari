@@ -1,155 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/orenge"
+    android:orientation="vertical"
     tools:context="com.cursoandroid.cupidogari.cupidogari.Cadastro_Activity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/usuario"
-        android:backgroundTintMode="src_over"
-        app:civ_border_color="#FFCC33"
-        app:civ_border_width="2dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:srcCompat="@drawable/usuario"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-    <EditText
-        android:id="@+id/editNome"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/edit"
-        android:ems="10"
-        android:hint="Digite seu nome"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textColorHighlight="@android:color/background_light"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toTopOf="@+id/editEmail"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-    <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="57dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/edit"
-        android:onClick="btnUpload_Click"
-        android:padding="10dp"
-        android:text="Salvar"
-        android:textSize="@dimen/unique"
-        app:layout_constraintLeft_toLeftOf="@+id/editSenha"
-        app:layout_constraintTop_toBottomOf="@+id/editSenha"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="45dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/edit"
-        android:padding="10dp"
-        android:text="Cancelar"
-        android:textSize="@dimen/unique"
-        app:layout_constraintLeft_toRightOf="@+id/btnSalvar"
-        app:layout_constraintRight_toRightOf="@+id/editSenha"
-        app:layout_constraintTop_toBottomOf="@+id/editSenha"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="18dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/edit"
-        android:ems="10"
-        android:hint="Digite se Email"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toTopOf="@+id/editSenha"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
-
-    <EditText
-        android:id="@+id/editSenha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
-        android:background="@drawable/edit"
-        android:ems="10"
-        android:hint="Digite sua senha"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/editEmail"
-        app:layout_constraintRight_toRightOf="@+id/editEmail"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginTop="7dp"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="Cadastro"
         android:textColor="@color/perfil"
-        android:textSize="30sp"
-        app:layout_constraintRight_toRightOf="@+id/img"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:textAlignment="center"
+        android:textSize="40sp" />
 
-</android.support.constraint.ConstraintLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        app:srcCompat="@drawable/usuario" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:theme="@style/TextLabel">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editSenha"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/edit"
+            android:hint="Digite seu nome"
+            android:inputType="textPassword"
+            android:paddingLeft="5dp"
+            android:textAlignment="center" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:theme="@style/TextLabel">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editNome"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/edit"
+            android:hint="Digite seu e-mail"
+            android:inputType="textPassword"
+            android:paddingLeft="5dp"
+            android:textAlignment="center" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:theme="@style/TextLabel">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editEmail"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/edit"
+            android:hint="Digite sua senha"
+            android:inputType="textPassword"
+            android:paddingLeft="5dp"
+            android:textAlignment="center" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edit"
+            android:onClick="btnSalvar"
+            android:text="Salvar" />
+    </LinearLayout>
+</LinearLayout>

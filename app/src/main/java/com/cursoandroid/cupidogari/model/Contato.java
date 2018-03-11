@@ -29,7 +29,6 @@ public class Contato {
         this.identificadorUsuario = identificadorUsuario;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -53,6 +52,5 @@ public class Contato {
     public void setUrl(String url) {
         this.url = url;
     }
-
 
 }

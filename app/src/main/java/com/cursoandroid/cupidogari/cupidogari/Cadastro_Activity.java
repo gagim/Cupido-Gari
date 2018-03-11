@@ -51,7 +51,7 @@ public class Cadastro_Activity extends AppCompatActivity {
 
     private ImageView imageUsuario;
 
-    private Button btnSalvar,btnCancelar;
+    private Button btnSalvar;
 
     private Usuario usuario;
 
@@ -65,14 +65,10 @@ public class Cadastro_Activity extends AppCompatActivity {
 
     Uri uriImagemUsuario;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_);
-
-
 
         editEmail = (EditText) findViewById(R.id.editEmail);
         editNome = (EditText) findViewById(R.id.editNome);
@@ -81,9 +77,6 @@ public class Cadastro_Activity extends AppCompatActivity {
         imageUsuario = (ImageView) findViewById(R.id.img);
 
         btnSalvar = (Button) findViewById(R.id.btnSalvar);
-        btnCancelar = (Button) findViewById(R.id.btnCancelar);
-
-
 
         imageUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,18 +89,7 @@ public class Cadastro_Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 salvarDados();
-
-            }
-        });
-
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent cancelar = new Intent(Cadastro_Activity.this,Login_Activity.class);
-                startActivity(cancelar);
-                finish();
             }
         });
 

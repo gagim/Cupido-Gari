@@ -1,7 +1,5 @@
 package com.cursoandroid.cupidogari.cupidogari;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,25 +7,19 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.cursoandroid.cupidogari.adapter.MensagemAdapter;
 import com.cursoandroid.cupidogari.config.ConfiguracaoFirebase;
 import com.cursoandroid.cupidogari.helper.Base64Custom;
 import com.cursoandroid.cupidogari.helper.Preferencias;
-import com.cursoandroid.cupidogari.model.Contato;
 import com.cursoandroid.cupidogari.model.Conversa;
 import com.cursoandroid.cupidogari.model.Mensagem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class ConversasActivity extends AppCompatActivity {
@@ -80,7 +72,6 @@ public class ConversasActivity extends AppCompatActivity {
         toolbar.setTitle(nomeUsuario);
         toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
         setSupportActionBar(toolbar);
-
 
         mensagens = new ArrayList<>();
         adapter = new MensagemAdapter(ConversasActivity.this,mensagens);

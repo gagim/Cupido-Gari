@@ -52,6 +52,8 @@
             android:background="@android:color/transparent"
             android:hint="Digite sua mensagem!"
             android:paddingRight="10dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColorHint="@color/perfil"
             android:textIsSelectable="false"
             android:theme="@style/TextLabel" />
 

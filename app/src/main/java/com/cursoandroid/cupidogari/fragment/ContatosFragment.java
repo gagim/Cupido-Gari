@@ -36,7 +36,6 @@ public class ContatosFragment extends Fragment {
 
     private DatabaseReference mDatabaseRef;
 
-
     public ContatosFragment() {
         // Required empty public constructor
     }
@@ -110,4 +109,5 @@ public class ContatosFragment extends Fragment {
         });
         return view;
     }
+
 }

@@ -1,6 +1,5 @@
 package com.cursoandroid.cupidogari.cupidogari;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.cursoandroid.cupidogari.config.ConfiguracaoFirebase;
 import com.cursoandroid.cupidogari.helper.Base64Custom;
 import com.cursoandroid.cupidogari.helper.Preferencias;
@@ -19,15 +17,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
 
 public class Login_Activity extends AppCompatActivity {
 
@@ -42,6 +35,7 @@ public class Login_Activity extends AppCompatActivity {
     private ValueEventListener valueEventListener;
     private DatabaseReference databaseReference;
     private String identificadorUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +75,7 @@ public class Login_Activity extends AppCompatActivity {
             progressDialog.dismiss();
         }
     }
+
     private void validarLogin(){
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
@@ -128,10 +123,10 @@ public class Login_Activity extends AppCompatActivity {
         startActivity(telaPrincipal);
         finish();
     }
-    public void cadastro(View view){
 
+    public void cadastro(View view){
         Intent cadastro = new Intent(Login_Activity.this,Cadastro_Activity.class);
         startActivity(cadastro);
-        finish();
+        onStop();
     }
 }

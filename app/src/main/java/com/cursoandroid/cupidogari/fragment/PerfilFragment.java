@@ -1,6 +1,5 @@
 package com.cursoandroid.cupidogari.fragment;
 
-
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,8 +35,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
-
-
 
 public class PerfilFragment extends Fragment {
 
@@ -203,5 +200,4 @@ public class PerfilFragment extends Fragment {
         userUpdates.put("nome", nomeUsuario);
         firebabe.updateChildren(userUpdates);
     }
-
 }

@@ -15,7 +15,6 @@ public class Notas {
     private String email;
     private String url;
 
-
     public String getId() {
         return id;
     }

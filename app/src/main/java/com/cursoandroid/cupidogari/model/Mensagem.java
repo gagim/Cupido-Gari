@@ -19,7 +19,6 @@ public class Mensagem {
 
     }
 
-
     public String getIdUsuario() {
         return idUsuario;
     }

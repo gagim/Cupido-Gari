@@ -6,8 +6,6 @@ import com.google.firebase.database.Exclude;
 
 public class Usuario {
 
-
-
     public Usuario (){
 
     }

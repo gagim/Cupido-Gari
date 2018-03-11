@@ -68,7 +68,6 @@ public class Perfil_Activity extends AppCompatActivity {
         }
     }
 
-
     private void deslogarUsuario(){
 
         usuarioFirebase.signOut();
