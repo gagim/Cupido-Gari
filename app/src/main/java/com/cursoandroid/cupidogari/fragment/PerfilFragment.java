@@ -71,7 +71,9 @@ public class PerfilFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
               Usuario usuario = dataSnapshot.getValue(Usuario.class);
                 txtNomeUsuario.setText(usuario.getNome());
-                Glide.with(getContext()).load(usuario.getUrl()).into(imgUsuario);
+                if (usuario.getUrl() != null){
+                    Glide.with(getContext()).load(usuario.getUrl()).into(imgUsuario);
+                }
             }
 
             @Override

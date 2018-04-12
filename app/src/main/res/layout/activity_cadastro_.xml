@@ -51,7 +51,7 @@
             android:layout_height="40dp"
             android:background="@drawable/edit"
             android:hint="Digite seu nome"
-            android:inputType="textPassword"
+            android:inputType="textAutoCorrect|textAutoComplete"
             android:paddingLeft="5dp"
             android:textAlignment="center" />
     </android.support.design.widget.TextInputLayout>
@@ -70,7 +70,7 @@
             android:layout_height="40dp"
             android:background="@drawable/edit"
             android:hint="Digite seu e-mail"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:paddingLeft="5dp"
             android:textAlignment="center" />
     </android.support.design.widget.TextInputLayout>

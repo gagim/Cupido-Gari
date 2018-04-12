@@ -3,6 +3,7 @@ package com.cursoandroid.cupidogari.cupidogari;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -24,18 +25,14 @@ import java.util.ArrayList;
 
 public class ConversasActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-
-    private String nomeUsuario,emailUsuario;
+    private String nomeUsuario;
 
     private String idUsuarioDestinatario,urlUsuarioDestinatario;
     private String idUsuarioRemetente,urlUsuarioRemetente,nomeUsuarioRemetente;
 
-    private ImageButton btn_mensagem;
     private EditText edit_mensagem;
     private TextView txtMensagem;
 
-    private ListView listView;
     private ArrayList<Mensagem> mensagens;
     private ArrayAdapter<Mensagem> adapter;
     private ValueEventListener valueEventListenerMensagem;
@@ -47,26 +44,37 @@ public class ConversasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversas);
 
-        toolbar = (Toolbar) findViewById(R.id.tb_conversa);
-        btn_mensagem = (ImageButton) findViewById(R.id.img_conversas);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tb_conversa);
+        ImageButton btn_mensagem = (ImageButton) findViewById(R.id.img_conversas);
         edit_mensagem = (EditText) findViewById(R.id.edit_conversas);
         txtMensagem = (TextView) findViewById(R.id.txtMensagem);
-        listView = (ListView) findViewById(R.id.lv_conversas);
+        ListView listView = (ListView) findViewById(R.id.lv_conversas);
 
         Preferencias preferencias = new Preferencias(ConversasActivity.this);
         idUsuarioRemetente = preferencias.getIdentificador();
         nomeUsuarioRemetente = preferencias.getNome();
         urlUsuarioRemetente = preferencias.getUrl();
 
+        Log.d("Remetente",urlUsuarioRemetente);
+
         Bundle extra = getIntent().getExtras();
 
         if (extra != null){
 
             nomeUsuario = extra.getString("nome");
-            emailUsuario = extra.getString("email");
+            String emailUsuario = extra.getString("email");
             urlUsuarioDestinatario = extra.getString("url");
+            assert emailUsuario != null;
             idUsuarioDestinatario = Base64Custom.codificarBase64(emailUsuario);
 
+            String[] destinarario = urlUsuarioRemetente.split("/");
+            String destrincho = destinarario[7];
+            if (destrincho.contains(".") || destrincho.contains("#") || destrincho.contains("$")
+                    || destrincho.contains("[") || destrincho.contains("]")){
+                Toast.makeText(ConversasActivity.this,"Tem!",Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(ConversasActivity.this,"Não tem!",Toast.LENGTH_LONG).show();
+            }
         }
 
         toolbar.setTitle(nomeUsuario);

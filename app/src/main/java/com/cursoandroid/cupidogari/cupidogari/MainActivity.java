@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Cupido Gari");
-        toolbar.setSubtitleTextColor(R.color.colorPrimaryDark);
+        toolbar.setSubtitleTextColor(R.color.colorAccent);
         setSupportActionBar(toolbar);
 
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.stl_tabs);
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         //Configurar sliding tabs
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this,R.color.colorAccent));
-        slidingTabLayout.setBackgroundColor(R.color.colorPrimaryDark);
 
         //Configurar adapter
         TabAdapter tabAdapter = new TabAdapter( getSupportFragmentManager() );

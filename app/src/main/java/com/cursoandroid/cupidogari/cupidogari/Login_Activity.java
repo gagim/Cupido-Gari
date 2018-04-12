@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,9 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login_Activity extends AppCompatActivity {
 
-    private EditText editNome, editSenha;
-
-    private Button btnLogar;
+    private EditText editEmail, editSenha;
 
     private ProgressDialog progressDialog;
 
@@ -45,23 +44,25 @@ public class Login_Activity extends AppCompatActivity {
 
         verificarUsuarioLogado();
 
-        editNome = (EditText) findViewById(R.id.editEmail);
+        editEmail = (EditText) findViewById(R.id.editEmail);
         editSenha = (EditText) findViewById(R.id.editSenha);
 
-        btnLogar = (Button) findViewById(R.id.btnLogar);
+        Button btnLogar = (Button) findViewById(R.id.btnLogar);
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(editNome == null || editSenha == null) {
+                String nome = editEmail.getText().toString();
+                String email = editSenha.getText().toString();
+                if(nome.isEmpty() || email.isEmpty()) {
                     Toast.makeText(Login_Activity.this,"Nenhum campo pode está vazio",Toast.LENGTH_LONG).show();
                 }else{
                     usuario = new Usuario();
-                    usuario.setEmail(editNome.getText().toString());
-                    usuario.setSenha(editSenha.getText().toString());
+                    usuario.setEmail(nome);
+                    usuario.setSenha(email);
                     validarLogin();
                 }
+
             }
         });
     }
@@ -69,14 +70,13 @@ public class Login_Activity extends AppCompatActivity {
     private void verificarUsuarioLogado(){
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         if( autenticacao.getCurrentUser() != null ){
-            progressDialog.setMessage("Logando...");
-            progressDialog.show();
             abrirTelaPrincipal();
-            progressDialog.dismiss();
         }
     }
 
     private void validarLogin(){
+        progressDialog.setMessage("Logando...");
+        progressDialog.show();
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
                 usuario.getEmail(),
@@ -98,7 +98,9 @@ public class Login_Activity extends AppCompatActivity {
                              Usuario usuarioRecuperado = dataSnapshot.getValue(Usuario.class);
 
                              Preferencias preferencias = new Preferencias(Login_Activity.this);
+                             assert usuarioRecuperado != null;
                              preferencias.salvarDados( identificadorUsuario,usuarioRecuperado.getNome(),usuarioRecuperado.getUrl() );
+                             abrirTelaPrincipal();
                          }
 
                          @Override
@@ -107,9 +109,6 @@ public class Login_Activity extends AppCompatActivity {
                          }
                      };
                      databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
-
-                    abrirTelaPrincipal();
                 }else{
                     Toast.makeText(Login_Activity.this, "Erro ao fazer login!", Toast.LENGTH_LONG ).show();
             }
@@ -121,6 +120,7 @@ public class Login_Activity extends AppCompatActivity {
     private void abrirTelaPrincipal(){
         Intent telaPrincipal = new Intent(Login_Activity.this,MainActivity.class);
         startActivity(telaPrincipal);
+        progressDialog.dismiss();
         finish();
     }
 

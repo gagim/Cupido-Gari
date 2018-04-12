@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.cursoandroid.cupidogari.config.ConfiguracaoFirebase;
 import com.cursoandroid.cupidogari.helper.Base64Custom;
 import com.cursoandroid.cupidogari.helper.Preferencias;
-import com.cursoandroid.cupidogari.model.Contato;
 import com.cursoandroid.cupidogari.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,18 +31,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-
 
 public class Cadastro_Activity extends AppCompatActivity {
 
@@ -169,9 +159,9 @@ public class Cadastro_Activity extends AppCompatActivity {
 
     @SuppressWarnings("VisibleForTests")
     private void salvarDados(){
-        if (uriImagemUsuario!= null) {
             final ProgressDialog dialog = new ProgressDialog(this);
             dialog.setTitle("Salvando Dados...");
+            dialog.setCancelable(false);
             dialog.show();
 
             Preferencias preferencias = new Preferencias(Cadastro_Activity.this);
@@ -193,7 +183,7 @@ public class Cadastro_Activity extends AppCompatActivity {
                     //Display success toast msg
                     Toast.makeText(getApplicationContext(), "Sucesso ao se cadastrar!", Toast.LENGTH_SHORT).show();
                     usuario = new Usuario();
-                    usuario.setNome( editNome.getText().toString() );
+                    usuario.setNome(editNome.getText().toString() );
                     usuario.setEmail(editEmail.getText().toString());
                     usuario.setSenha(editSenha.getText().toString());
                     usuario.setUrl(taskSnapshot.getDownloadUrl().toString());
@@ -220,14 +210,13 @@ public class Cadastro_Activity extends AppCompatActivity {
                             //Show upload progress
 
                             double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                            dialog.setMessage("Salvando Dados" + (int) progress + "%");
+                            dialog.setMessage("Salvando Dados " + (int) progress + "%");
                         }
                     });
 
-        } else {
-            Toast.makeText(getApplicationContext(), "Por favor coloque uma imagem!", Toast.LENGTH_SHORT).show();
         }
 
-    }
 
+    public void btnSalvar(View view) {
+    }
 }

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/orenge"
     tools:context="com.cursoandroid.cupidogari.cupidogari.ConversasActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/laranja_pequena" />
 
     <include
         android:id="@+id/tb_conversa"
@@ -39,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/edit_perfil"
+        android:background="@android:color/transparent"
         android:orientation="horizontal">
 
         <EditText
@@ -49,8 +58,9 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/edit_mensagem"
             android:hint="Digite sua mensagem!"
+            android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textColorHint="@color/perfil"
@@ -65,6 +75,7 @@
             android:background="@drawable/edit_mensagem"
             android:src="@drawable/ic_send"
             android:theme="@android:color/holo_orange_dark" />
+
     </LinearLayout>
 
 </RelativeLayout>

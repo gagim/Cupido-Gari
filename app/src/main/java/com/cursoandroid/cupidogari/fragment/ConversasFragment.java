@@ -2,6 +2,7 @@ package com.cursoandroid.cupidogari.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cursoandroid.cupidogari.adapter.ConversaAdapter;
 import com.cursoandroid.cupidogari.config.ConfiguracaoFirebase;
@@ -27,7 +29,6 @@ import java.util.ArrayList;
 
 public class ConversasFragment extends Fragment {
 
-    private ListView listView;
     private ArrayAdapter<Conversa> adapter;
     private ArrayList<Conversa> conversas;
 
@@ -39,22 +40,24 @@ public class ConversasFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_conversas, container, false);
 
         conversas = new ArrayList<>();
-        listView = (ListView) view.findViewById(R.id.contatos);
+        ListView listView = (ListView) view.findViewById(R.id.contatos);
         adapter = new ConversaAdapter(getActivity(),conversas);
         listView.setAdapter(adapter);
 
         Preferencias preferencias = new Preferencias(getActivity());
         String identificadorUsuarioLogado = preferencias.getIdentificador();
 
-        mDatabaseRef = ConfiguracaoFirebase.getFirebase()
-                .child("conversas")
-                .child( identificadorUsuarioLogado);
+        if (identificadorUsuarioLogado != null) {
+            mDatabaseRef = ConfiguracaoFirebase.getFirebase()
+                    .child("conversas")
+                    .child(identificadorUsuarioLogado);
+        }
 
         valueEventListenerContatos = new ValueEventListener() {
             @Override
@@ -91,12 +94,16 @@ public class ConversasFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mDatabaseRef.addValueEventListener(valueEventListenerContatos);
+        if (mDatabaseRef != null) {
+            mDatabaseRef.addValueEventListener(valueEventListenerContatos);
+        }
     }
     @Override
     public void onStop() {
         super.onStop();
-        mDatabaseRef.removeEventListener(valueEventListenerContatos);
+        if (mDatabaseRef != null) {
+            mDatabaseRef.removeEventListener(valueEventListenerContatos);
+        }
     }
 
 }

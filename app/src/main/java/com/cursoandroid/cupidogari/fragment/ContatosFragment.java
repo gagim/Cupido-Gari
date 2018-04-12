@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.cursoandroid.cupidogari.adapter.ContatoAdapter;
@@ -43,15 +44,17 @@ public class ContatosFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mDatabaseRef.addValueEventListener(valueEventListenerContatos);
-        Log.i("ValueEventListener", "onStart");
+        if (mDatabaseRef != null) {
+            mDatabaseRef.addValueEventListener(valueEventListenerContatos);
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mDatabaseRef.removeEventListener(valueEventListenerContatos);
-        Log.i("ValueEventListener", "onStop");
+        if (mDatabaseRef != null) {
+            mDatabaseRef.removeEventListener(valueEventListenerContatos);
+        }
     }
 
     @Override
@@ -71,10 +74,13 @@ public class ContatosFragment extends Fragment {
         //Recuperar contatos do firebase
         Preferencias preferencias = new Preferencias(getActivity());
         String identificadorUsuarioLogado = preferencias.getIdentificador();
+        //Log.d("id",identificadorUsuarioLogado);
 
-        mDatabaseRef = ConfiguracaoFirebase.getFirebase()
-                .child("contatos")
-                .child(identificadorUsuarioLogado);
+        if(identificadorUsuarioLogado != null) {
+            mDatabaseRef = ConfiguracaoFirebase.getFirebase()
+                    .child("contatos")
+                    .child(identificadorUsuarioLogado);
+        }
 
         valueEventListenerContatos = new ValueEventListener() {
             @Override
