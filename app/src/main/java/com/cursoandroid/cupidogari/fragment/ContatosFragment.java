@@ -2,6 +2,7 @@ package com.cursoandroid.cupidogari.fragment;
 
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,8 +32,8 @@ import java.util.List;
 
 public class ContatosFragment extends Fragment {
 
-    private ListView listView;
     private ArrayAdapter adapter;
+    private TextView txtSemContato;
     private ArrayList<Contato> contatos;
     private ValueEventListener valueEventListenerContatos;
 
@@ -58,7 +60,7 @@ public class ContatosFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
@@ -66,7 +68,8 @@ public class ContatosFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_contatos, container, false);
 
-        listView = (ListView) view.findViewById(R.id.contatos);
+        ListView listView = view.findViewById(R.id.contatos);
+        txtSemContato = view.findViewById(R.id.txtSemContatos);
 
         adapter = new ContatoAdapter(getActivity(), contatos);
         listView.setAdapter(adapter);
@@ -74,7 +77,6 @@ public class ContatosFragment extends Fragment {
         //Recuperar contatos do firebase
         Preferencias preferencias = new Preferencias(getActivity());
         String identificadorUsuarioLogado = preferencias.getIdentificador();
-        //Log.d("id",identificadorUsuarioLogado);
 
         if(identificadorUsuarioLogado != null) {
             mDatabaseRef = ConfiguracaoFirebase.getFirebase()
@@ -86,15 +88,20 @@ public class ContatosFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //Limpar lista
-                contatos.clear();
-
-                //Listar contatos
-                for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                    Contato contato = dados.getValue(Contato.class);
-                    contatos.add(contato);
+                if (!dataSnapshot.hasChildren()){
+                    txtSemContato.setVisibility(View.VISIBLE);
                 }
-                adapter.notifyDataSetChanged();
+
+                    //Limpar lista
+                    contatos.clear();
+
+                    //Listar contatos
+                    for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                        Contato contato = dados.getValue(Contato.class);
+                        contatos.add(contato);
+                        txtSemContato.setVisibility(View.GONE);
+                    }
+                    adapter.notifyDataSetChanged();
             }
 
             @Override

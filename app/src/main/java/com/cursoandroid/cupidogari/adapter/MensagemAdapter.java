@@ -7,13 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.cursoandroid.cupidogari.cupidogari.ConversasActivity;
 import com.cursoandroid.cupidogari.cupidogari.R;
 import com.cursoandroid.cupidogari.helper.Preferencias;
 import com.cursoandroid.cupidogari.model.Mensagem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MensagemAdapter extends ArrayAdapter<Mensagem> {
 
@@ -26,15 +27,16 @@ public class MensagemAdapter extends ArrayAdapter<Mensagem> {
         this.mensagens = objects;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View converterView, ViewGroup parent){
+    public View getView(int position, View converterView, @NonNull ViewGroup parent){
 
         View view = null;
         if (mensagens != null) {
             Preferencias preferencias = new Preferencias(context);
             String idUsuarioRemetente = preferencias.getIdentificador();
 
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             Mensagem mensagem = mensagens.get(position);
 
             if (idUsuarioRemetente.equals(mensagem.getIdUsuario())) {
@@ -42,9 +44,10 @@ public class MensagemAdapter extends ArrayAdapter<Mensagem> {
             } else {
                 view = inflater.inflate(R.layout.item_mensagem_esquerda, parent, false);
             }
-            TextView textoMensagem = (TextView) view.findViewById(R.id.edit_quemManda);
+            TextView textoMensagem = view.findViewById(R.id.edit_quemManda);
             textoMensagem.setText(mensagem.getMensagem());
-
+            TextView txtHora = view.findViewById(R.id.txtHoras);
+            txtHora.setText(mensagem.getDate());
         }
 
         return view;

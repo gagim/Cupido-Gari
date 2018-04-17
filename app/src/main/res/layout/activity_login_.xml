@@ -10,102 +10,112 @@
     tools:layout_editor_absoluteY="25dp"
     android:orientation="vertical">
 
-        <Space
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="159dp"
-            app:srcCompat="@drawable/laranja" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:theme="@style/TextLabel">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit"
-                android:hint="Digite seu email"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="5dp"
-                android:textAlignment="center" />
-        </android.support.design.widget.TextInputLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:theme="@style/TextLabel">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editSenha"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:background="@drawable/edit"
-                android:hint="Digite sua senha"
-                android:inputType="textPassword"
-                android:paddingLeft="5dp"
-                android:textAlignment="center" />
-        </android.support.design.widget.TextInputLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <Button
-            android:id="@+id/btnLogar"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edit"
-            android:gravity="center_horizontal|center"
-            android:text="Logar"
-            android:textColor="@android:color/background_dark"
-            android:textSize="@dimen/unique"
-            app:layout_constraintBottom_toTopOf="@+id/txtButton"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/txtButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal|center"
-            android:onClick="cadastro"
-            android:text="Não possue conta? cadastre-se"
-            android:textColor="@android:color/background_dark"
-            android:textSize="@dimen/fab_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
 
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp" />
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="159dp"
+                            app:srcCompat="@drawable/laranja" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="300dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:theme="@style/TextLabel">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/editEmail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/edit"
+                                    android:hint="Digite seu email"
+                                    android:inputType="textEmailAddress"
+                                    android:paddingLeft="5dp"
+                                    android:textAlignment="center" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="300dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:theme="@style/TextLabel">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/editSenha"
+                                    android:layout_width="300dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/edit"
+                                    android:hint="Digite sua senha"
+                                    android:inputType="textPassword"
+                                    android:paddingLeft="5dp"
+                                    android:textAlignment="center" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp" />
+
+                        <Button
+                            android:id="@+id/btnLogar"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/edit"
+                            android:gravity="center_horizontal|center"
+                            android:text="Logar"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="@dimen/unique"
+                            app:layout_constraintBottom_toTopOf="@+id/txtButton"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            tools:layout_constraintBottom_creator="1"
+                            tools:layout_constraintLeft_creator="1"
+                            tools:layout_constraintRight_creator="1" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp" />
+
+                        <TextView
+                            android:id="@+id/txtButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center_horizontal|center"
+                            android:onClick="cadastro"
+                            android:text="Cadastre-se"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            tools:layout_constraintBottom_creator="1"
+                            tools:layout_constraintLeft_creator="1"
+                            tools:layout_constraintRight_creator="1" />
+                </LinearLayout>
+        </ScrollView>
 </LinearLayout>

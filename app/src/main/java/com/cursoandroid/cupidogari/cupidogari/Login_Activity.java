@@ -75,7 +75,7 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void validarLogin(){
-        progressDialog.setMessage("Logando...");
+        progressDialog.setMessage("Efetuando Login...");
         progressDialog.show();
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
@@ -110,7 +110,8 @@ public class Login_Activity extends AppCompatActivity {
                      };
                      databaseReference.addListenerForSingleValueEvent(valueEventListener);
                 }else{
-                    Toast.makeText(Login_Activity.this, "Erro ao fazer login!", Toast.LENGTH_LONG ).show();
+                     progressDialog.dismiss();
+                    Toast.makeText(Login_Activity.this, "Verifique seus dados e tente novamente!", Toast.LENGTH_SHORT ).show();
             }
         }
 

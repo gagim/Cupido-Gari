@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="textColorPrimary">#ffffff</color>
+    <color name="textColorTransparent">@android:color/transparent</color>
     <color name="colorAccent">#ffa500</color>
     <color name="laranja">#ffcc33</color>
     <color name="perfil">#000000</color>

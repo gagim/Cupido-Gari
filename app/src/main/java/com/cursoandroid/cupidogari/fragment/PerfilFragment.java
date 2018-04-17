@@ -1,13 +1,20 @@
 package com.cursoandroid.cupidogari.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +22,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +38,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,11 +45,9 @@ import static android.app.Activity.RESULT_OK;
 
 public class PerfilFragment extends Fragment {
 
-    private ImageView imgUsuario;
-    private Button btnSalvar;
-    private StorageReference mStorageRef;
-    private TextView txtNomeUsuario,txtMudarNome,txtMudarFoto;
-    private int Code = 1;
+    private ImageView imgBackGroud;
+    private ProgressDialog progressDialog;
+    private TextView txtNomeUsuario,txtEmailUsuario,txtSenhaUsuario;
     private Preferencias preferencias;
     private DatabaseReference firebabe;
     Uri uriImagemUsuario;
@@ -54,26 +59,42 @@ public class PerfilFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        final View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-
-
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Carregando...");
+        progressDialog.show();
         preferencias = new Preferencias(getActivity());
+
+        imgBackGroud = view.findViewById(R.id.imgBackPerfil);
+        Button btnSalvar = view.findViewById(R.id.btnSalvar);
+        txtNomeUsuario = view.findViewById(R.id.txtNomeUsuario);
+        txtEmailUsuario = view.findViewById(R.id.txtEmailUsuario);
+        txtSenhaUsuario = view.findViewById(R.id.txtSenhaUsuario);
+
         String identificadorUsuarioLogado = preferencias.getIdentificador();
         firebabe = ConfiguracaoFirebase.getFirebase()
                 .child("usuarios")
                 .child(identificadorUsuarioLogado);
         firebabe.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-              Usuario usuario = dataSnapshot.getValue(Usuario.class);
+                Usuario usuario = dataSnapshot.getValue(Usuario.class);
                 txtNomeUsuario.setText(usuario.getNome());
-                if (usuario.getUrl() != null){
-                    Glide.with(getContext()).load(usuario.getUrl()).into(imgUsuario);
+                txtEmailUsuario.setText(usuario.getEmail());
+                String url = usuario.getUrl().replace("*",".");
+                if (!usuario.getUrl().equals("hue")){
+                    Glide.with(getContext()).load(url).into(imgBackGroud);
+                }else {
+                    ProgressBar pb = view.findViewById(R.id.pbPerfil);
+                    pb.setVisibility(View.GONE);
                 }
+                progressDialog.dismiss();
             }
 
             @Override
@@ -82,25 +103,19 @@ public class PerfilFragment extends Fragment {
             }
         });
 
-        imgUsuario = (ImageView) view.findViewById(R.id.img);
-        btnSalvar = (Button) view.findViewById(R.id.btnSalvar);
-        txtNomeUsuario = (TextView) view.findViewById(R.id.txtNomeUsuario);
-        txtMudarFoto = (TextView) view.findViewById(R.id.txtMudarFoto);
-        txtMudarNome = (TextView) view.findViewById(R.id.txtMudarNome);
-
-        txtMudarFoto.setOnClickListener(new View.OnClickListener() {
+        imgBackGroud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirGaleria();
             }
         });
 
-        txtMudarNome.setOnClickListener(new View.OnClickListener() {
+        /*txtMudarNome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 trocarNome();
             }
-        });
+        });*/
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +126,12 @@ public class PerfilFragment extends Fragment {
                 alertDialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        alterarFoto();
-                        alterarNomeUsuario();
+                        progressDialog = new ProgressDialog(getActivity());
+                        progressDialog.setTitle("Salvando dados...");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                        //alterarFoto();
+                        alterarDadosUsuario();
                     }
                 });
                 alertDialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -127,25 +146,18 @@ public class PerfilFragment extends Fragment {
 
         return view;
     }
-    public String getImageExt(Uri uri) {
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
-    private ContentResolver getContentResolver() {
-        this.getContext();
-        return getContentResolver();
-    }
+
     private void abrirGaleria(){
         Intent intent = new   Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, Code);
+        int code = 1;
+        startActivityForResult(intent, code);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode== RESULT_OK && requestCode== 1) {
             uriImagemUsuario = data.getData();
-            imgUsuario.setImageURI(uriImagemUsuario);
+            imgBackGroud.setImageURI(uriImagemUsuario);
         }
     }
     private void trocarNome(){
@@ -181,8 +193,8 @@ public class PerfilFragment extends Fragment {
     private void alterarFoto() {
             preferencias = new Preferencias(getActivity());
             String identificadorUsuarioLogado = preferencias.getIdentificador();
-            mStorageRef = ConfiguracaoFirebase.getEstorage()
-                    .child(FB_STORAGE_PATH + identificadorUsuarioLogado + "/" + "jpeg");
+        StorageReference mStorageRef = ConfiguracaoFirebase.getEstorage()
+                .child(FB_STORAGE_PATH + identificadorUsuarioLogado + "/" + "jpeg");
         mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -196,10 +208,17 @@ public class PerfilFragment extends Fragment {
         });
 
     }
-    private void alterarNomeUsuario(){
-        String nomeUsuario = (txtNomeUsuario.getText().toString());
-        Map<String, Object> userUpdates = new HashMap<String, Object>();
+    private void alterarDadosUsuario(){
+        String nomeUsuario,emailUsuario,senhaUsuario;
+        nomeUsuario = (txtNomeUsuario.getText().toString());
+        emailUsuario = (txtEmailUsuario.getText().toString());
+        senhaUsuario = (txtSenhaUsuario.getText().toString());
+        Map<String, Object> userUpdates = new HashMap<>();
         userUpdates.put("nome", nomeUsuario);
+        userUpdates.put("email", emailUsuario);
+        userUpdates.put("senha", senhaUsuario);
         firebabe.updateChildren(userUpdates);
+        Toast.makeText(getContext(), "Auterado com sucesso", Toast.LENGTH_LONG).show();
+        progressDialog.dismiss();
     }
 }

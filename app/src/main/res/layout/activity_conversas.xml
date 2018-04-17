@@ -15,6 +15,16 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/laranja_pequena" />
 
+    <TextView
+        android:id="@+id/txtSemConversa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:text="Você nâo possui conversas!"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="20sp" />
+
     <include
         android:id="@+id/tb_conversa"
         layout="@layout/toobar"
@@ -32,17 +42,6 @@
         android:divider="@android:color/transparent"
         android:padding="8dp"></ListView>
 
-    <TextView
-        android:id="@+id/txtMensagem"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_above="@+id/lv_conversas"
-        android:layout_below="@+id/lv_conversas"
-        android:layout_centerHorizontal="true"
-        android:text="Sem mensagem!"
-        android:textColor="@color/perfil"
-        android:textSize="20sp" />
-
     <LinearLayout
         android:id="@+id/mensagem"
         android:layout_width="match_parent"
@@ -55,6 +54,7 @@
             android:id="@+id/edit_conversas"
             android:layout_width="300dp"
             android:layout_height="50sp"
+            android:layout_margin="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
@@ -71,7 +71,7 @@
             android:id="@+id/img_conversas"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:layout_margin="2dp"
+            android:layout_margin="5dp"
             android:background="@drawable/edit_mensagem"
             android:src="@drawable/ic_send"
             android:theme="@android:color/holo_orange_dark" />

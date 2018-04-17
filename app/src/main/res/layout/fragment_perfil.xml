@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,139 +9,156 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginRight="42dp"
-        android:layout_marginTop="35dp"
-        android:backgroundTintMode="src_over"
-        app:civ_border_color="#FFCC33"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/usuario"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:background="@android:color/transparent"
-        android:text="Perfil"
-        android:textAlignment="center"
-        android:textColor="@color/perfil"
-        android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtNomeUsuario"
-        android:layout_alignLeft="@+id/imgUsuario"
-        android:layout_alignStart="@+id/imgUsuario"
-        android:layout_marginBottom="136dp"
-        android:background="@android:color/transparent"
-        android:text="Nome Do Usuario:"
-        android:textColor="@color/perfil"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/txtNomeUsuario"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1" />
-
-    <TextView
-        android:id="@+id/txtNomeUsuario"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView5"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/edit_mensagem"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="2dp"
-        android:textColor="@color/perfil"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toBottomOf="@+id/txtMudarNome"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/txtMudarNome"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-    <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/txtNomeUsuario"
-        android:layout_alignBottom="@+id/txtNomeUsuario"
-        android:layout_alignEnd="@+id/imgUsuario"
-        android:layout_alignRight="@+id/imgUsuario"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/edit_mensagem"
-        android:text="Salvar"
-        android:textColor="@color/perfil"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
-
-    <TextView
-        android:id="@+id/txtMudarFoto"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/edit_mensagem"
-        android:text="Mudar foto"
-        android:textAlignment="center"
-        android:textColor="@color/perfil"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toBottomOf="@+id/img"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
-
-    <TextView
-        android:id="@+id/txtMudarNome"
-        android:layout_width="125dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="23dp"
-        android:layout_marginRight="32dp"
-        android:background="@drawable/edit_mensagem"
-        android:text="Mudar nome"
-        android:textAlignment="center"
-        android:textColor="@color/perfil"
-        android:textSize="@dimen/unique"
-        app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
 
-</android.support.constraint.ConstraintLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:text="Perfil"
+                android:textAlignment="center"
+                android:textColor="@color/perfil"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbPerfil"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:progressTint="@color/colorAccent"
+                    android:foregroundTint="@color/colorAccent"
+                    android:foregroundTintMode="@color/colorAccent" />
+
+                <ImageView
+                    android:id="@+id/imgBackPerfil"
+                    android:layout_width="260dp"
+                    android:layout_height="160dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:srcCompat="@drawable/usuario" />
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:theme="@style/TextLabel">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txtNomeUsuario"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit"
+                    android:hint="Nome"
+                    android:inputType="textAutoCorrect|textAutoComplete"
+                    android:paddingLeft="5dp"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:theme="@style/TextLabel">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txtEmailUsuario"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit"
+                    android:hint="E-mail"
+                    android:inputType="textAutoCorrect|textAutoComplete"
+                    android:paddingLeft="5dp"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:theme="@style/TextLabel">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txtSenhaUsuario"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit"
+                    android:hint="Senha"
+                    android:inputType="textAutoCorrect|textAutoComplete"
+                    android:paddingLeft="5dp"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="23dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_mensagem"
+                android:text="Salvar"
+                android:textColor="@color/perfil"
+                android:textSize="@dimen/unique"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_constraintBottom_creator="1"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

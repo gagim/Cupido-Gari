@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.cursoandroid.cupidogari.adapter.ConversaAdapter;
 import com.cursoandroid.cupidogari.config.ConfiguracaoFirebase;
@@ -18,7 +19,6 @@ import com.cursoandroid.cupidogari.cupidogari.ConversasActivity;
 import com.cursoandroid.cupidogari.cupidogari.R;
 import com.cursoandroid.cupidogari.helper.Base64Custom;
 import com.cursoandroid.cupidogari.helper.Preferencias;
-import com.cursoandroid.cupidogari.model.Contato;
 import com.cursoandroid.cupidogari.model.Conversa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +32,7 @@ public class ConversasFragment extends Fragment {
     private ArrayAdapter<Conversa> adapter;
     private ArrayList<Conversa> conversas;
 
+    private TextView txtSemMensagens;
     private ValueEventListener valueEventListenerContatos;
     private DatabaseReference mDatabaseRef;
 
@@ -46,8 +47,9 @@ public class ConversasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_conversas, container, false);
 
         conversas = new ArrayList<>();
-        ListView listView = (ListView) view.findViewById(R.id.contatos);
+        ListView listView = view.findViewById(R.id.contatos);
         adapter = new ConversaAdapter(getActivity(),conversas);
+        txtSemMensagens = view.findViewById(R.id.txtSemMensagens);
         listView.setAdapter(adapter);
 
         Preferencias preferencias = new Preferencias(getActivity());
@@ -62,13 +64,19 @@ public class ConversasFragment extends Fragment {
         valueEventListenerContatos = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                conversas.clear();
 
-                for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                    Conversa contato = dados.getValue(Conversa.class);
-                    conversas.add(contato);
+                if (!dataSnapshot.hasChildren()){
+                    txtSemMensagens.setVisibility(View.VISIBLE);
                 }
-                adapter.notifyDataSetChanged();
+
+                    conversas.clear();
+
+                    for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                        Conversa contato = dados.getValue(Conversa.class);
+                        conversas.add(contato);
+                        txtSemMensagens.setVisibility(View.GONE);
+                    }
+                    adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -94,16 +102,12 @@ public class ConversasFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (mDatabaseRef != null) {
             mDatabaseRef.addValueEventListener(valueEventListenerContatos);
-        }
     }
     @Override
     public void onStop() {
         super.onStop();
-        if (mDatabaseRef != null) {
             mDatabaseRef.removeEventListener(valueEventListenerContatos);
-        }
     }
 
 }

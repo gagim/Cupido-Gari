@@ -1,5 +1,6 @@
 package com.cursoandroid.cupidogari.cupidogari;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -11,11 +12,13 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cursoandroid.cupidogari.config.ConfiguracaoFirebase;
@@ -39,19 +42,13 @@ public class Cadastro_Activity extends AppCompatActivity {
 
     private EditText editSenha,editNome,editEmail;
 
-    private ImageView imageUsuario;
+    private ImageView imgBackGround;
 
-    private Button btnSalvar;
+    private ProgressDialog dialog;
 
     private Usuario usuario;
 
-    private FirebaseAuth autenticacao;
-
-    private StorageReference mStorageRef;
-
     public static final String FB_STORAGE_PATH = "image/";
-
-    private int Code = 1;
 
     Uri uriImagemUsuario;
 
@@ -60,15 +57,15 @@ public class Cadastro_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_);
 
-        editEmail = (EditText) findViewById(R.id.editEmail);
-        editNome = (EditText) findViewById(R.id.editNome);
-        editSenha = (EditText) findViewById(R.id.editSenha);
+        editEmail = findViewById(R.id.editEmail);
+        editNome = findViewById(R.id.editNome);
+        editSenha = findViewById(R.id.editSenha);
 
-        imageUsuario = (ImageView) findViewById(R.id.img);
+        imgBackGround = findViewById(R.id.imgBackCadastro);
 
-        btnSalvar = (Button) findViewById(R.id.btnSalvar);
+        Button btnSalvar = findViewById(R.id.btnSalvar);
 
-        imageUsuario.setOnClickListener(new View.OnClickListener() {
+        imgBackGround.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirGaleria();
@@ -79,7 +76,19 @@ public class Cadastro_Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                salvarDados();
+                String email,nome,senha;
+                email = editEmail.getText().toString();
+                nome = editNome.getText().toString();
+                senha = editSenha.getText().toString();
+                if (email.isEmpty() || nome.isEmpty() || senha.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Nenhum campo pode está vazio!", Toast.LENGTH_SHORT).show();
+                }else {
+                        if (uriImagemUsuario != null){
+                            salvarDadosComFoto();
+                        }else {
+                            salvarDados();
+                        }
+                }
             }
         });
 
@@ -87,7 +96,7 @@ public class Cadastro_Activity extends AppCompatActivity {
 
     private void cadastrarUsuario() {
 
-        autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+        FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
                 usuario.getEmail(),
                 usuario.getSenha()
@@ -103,31 +112,57 @@ public class Cadastro_Activity extends AppCompatActivity {
                     Preferencias preferencias = new Preferencias(Cadastro_Activity.this);
                     preferencias.salvarDados(identificadorUsuario,usuario.getNome(),usuario.getUrl());
 
+                    dialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Sucesso ao se cadastrar!", Toast.LENGTH_SHORT).show();
+
                     Intent salvar = new Intent(Cadastro_Activity.this, Login_Activity.class);
                     startActivity(salvar);
                     finish();
 
                 } else {
 
-                    String erroExecucao = "";
+                    String erroExecucao;
 
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e) {
                         erroExecucao = "Digite uma senha mais forte,contendo mais caracteres,letras ou números";
+                        limparDados(2);
+                        dialog.dismiss();
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExecucao = "O e-mail digitado é inválido,digite um novo e-mail";
+                        limparDados(1);
+                        dialog.dismiss();
                     } catch (FirebaseAuthUserCollisionException e) {
                         erroExecucao = "O e-mail digitado é já existe,por favor digite outro";
+                        limparDados(1);
+                        dialog.dismiss();
                     } catch (Exception e) {
                         erroExecucao = "Erro ao cadastrar usuário";
-                        e.printStackTrace();
+                        limparDados(3);
+                        dialog.dismiss();
                     }
 
                     Toast.makeText(Cadastro_Activity.this, "Erro: " + erroExecucao, Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+    }
+
+    private void limparDados(int num){
+        switch (num){
+            case 1:
+                editEmail.setText("");
+                break;
+            case 2:
+                editSenha.setText("");
+                break;
+                default:
+                    editEmail.setText("");
+                    editNome.setText("");
+                    editSenha.setText("");
+        }
 
     }
 
@@ -139,9 +174,11 @@ public class Cadastro_Activity extends AppCompatActivity {
 
     private void abrirGaleria(){
         Intent intent = new   Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, Code);
+        int code = 1;
+        startActivityForResult(intent, code);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -153,13 +190,31 @@ public class Cadastro_Activity extends AppCompatActivity {
             int columnIndex= c.getColumnIndex(filePath[0]);
             String picturePath= c.getString(columnIndex);c.close();
             Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-            imageUsuario.setImageBitmap(thumbnail);
+            imgBackGround.setImageBitmap(thumbnail);
+            imgBackGround.setImageURI(uriImagemUsuario);
+            TextView retirar = findViewById(R.id.retirar);
+            retirar.setText("Mudar Foto");
         }
     }
 
-    @SuppressWarnings("VisibleForTests")
     private void salvarDados(){
-            final ProgressDialog dialog = new ProgressDialog(this);
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Salvando Dados...");
+        dialog.setCancelable(false);
+        dialog.show();
+
+        usuario = new Usuario();
+        usuario.setNome(editNome.getText().toString() );
+        usuario.setEmail(editEmail.getText().toString());
+        usuario.setSenha(editSenha.getText().toString());
+        usuario.setUrl("hue");
+        cadastrarUsuario();
+    }
+
+
+    @SuppressWarnings("VisibleForTests")
+    private void salvarDadosComFoto(){
+            dialog = new ProgressDialog(this);
             dialog.setTitle("Salvando Dados...");
             dialog.setCancelable(false);
             dialog.show();
@@ -167,8 +222,8 @@ public class Cadastro_Activity extends AppCompatActivity {
             Preferencias preferencias = new Preferencias(Cadastro_Activity.this);
             String identificadorUsuarioLogado = preferencias.getIdentificador();
 
-            mStorageRef = ConfiguracaoFirebase.getEstorage()
-                    .child(FB_STORAGE_PATH + identificadorUsuarioLogado + "/" + getImageExt(uriImagemUsuario));
+        StorageReference mStorageRef = ConfiguracaoFirebase.getEstorage()
+                .child(FB_STORAGE_PATH + identificadorUsuarioLogado + "/" + getImageExt(uriImagemUsuario));
 
 
             //Add file to reference
@@ -177,16 +232,12 @@ public class Cadastro_Activity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-
-                    //Dimiss dialog when success
-                    dialog.dismiss();
-                    //Display success toast msg
-                    Toast.makeText(getApplicationContext(), "Sucesso ao se cadastrar!", Toast.LENGTH_SHORT).show();
                     usuario = new Usuario();
                     usuario.setNome(editNome.getText().toString() );
                     usuario.setEmail(editEmail.getText().toString());
                     usuario.setSenha(editSenha.getText().toString());
-                    usuario.setUrl(taskSnapshot.getDownloadUrl().toString());
+                    String url = taskSnapshot.getDownloadUrl().toString().replace(".","*");
+                    usuario.setUrl(url);
                     cadastrarUsuario();
 
 
@@ -199,7 +250,7 @@ public class Cadastro_Activity extends AppCompatActivity {
                             //Dimiss dialog when error
                             dialog.dismiss();
                             //Display err toast msg
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("Error cadastro: ", e.getMessage());
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -217,6 +268,4 @@ public class Cadastro_Activity extends AppCompatActivity {
         }
 
 
-    public void btnSalvar(View view) {
-    }
 }

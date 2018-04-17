@@ -7,8 +7,5 @@
         android:orderInCategory="100" app:showAsAction="never"/>
     <item android:id="@+id/sair" android:title="@string/item_sair"
         android:orderInCategory="200" app:showAsAction="never"/>
-    <item android:id="@+id/item_add_pessoa" android:title="@string/item_add_pessoa"
-        android:orderInCategory="350" app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_person_add"/>
 
 </menu>

@@ -1,8 +1,11 @@
 package com.cursoandroid.cupidogari.cupidogari;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -44,36 +47,32 @@ public class Perfil_Activity extends AppCompatActivity {
         //Configurar adapter
         TapAdapterNota tabAdapter = new TapAdapterNota( getSupportFragmentManager() );
         viewPager.setAdapter(tabAdapter);
-
         slidingTabLayout.setViewPager(viewPager);
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.perfil_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch ( item.getItemId() ){
-            case R.id.sair :
-                deslogarUsuario();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void deslogarUsuario(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Perfil_Activity.this);
+        alertDialog.setTitle("Deseja sair?");
+        alertDialog.setPositiveButton("sim", new DialogInterface.OnClickListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                usuarioFirebase.signOut();
 
-        usuarioFirebase.signOut();
+                Intent intent = new Intent(Perfil_Activity.this, Login_Activity.class);
+                startActivity(intent);
+                finishAfterTransition();
+            }
+        });
+        alertDialog.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-        Intent intent = new Intent(Perfil_Activity.this, Login_Activity.class);
-        startActivity(intent);
-        finish();
+            }
+        });
+        alertDialog.create();
+        alertDialog.show();
     }
 }

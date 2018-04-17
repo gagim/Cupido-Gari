@@ -5,15 +5,7 @@ public class Mensagem {
 
     private String idUsuario;
     private String mensagem;
-    private String url;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    private String date;
 
     public Mensagem(){
 
@@ -33,5 +25,13 @@ public class Mensagem {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
