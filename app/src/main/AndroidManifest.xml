@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.cursoandroid.cupidogari.cupidogari">
+    package="com.cursoandroid.orangebook.cupidogari">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,9 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:screenOrientation="portrait"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/backup_descriptor"
-        >
+        android:theme="@style/AppTheme">
         <activity android:name=".Login_Activity">
            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +26,7 @@
             tools:targetApi="jelly_bean" />
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.cursoandroid.cupidogari.fragment.ContatosFragment"
+        <activity android:name="com.cursoandroid.orangebook.fragment.ContatosFragment"
             android:screenOrientation="portrait"/>
         <activity android:name=".Perfil_Activity"
             android:screenOrientation="portrait"

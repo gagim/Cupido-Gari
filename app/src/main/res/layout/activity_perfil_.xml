@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/orenge"
     android:orientation="vertical"
-    tools:context="com.cursoandroid.cupidogari.cupidogari.Perfil_Activity"
+    tools:context="com.cursoandroid.orangebook.cupidogari.Perfil_Activity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -20,7 +19,7 @@
         tools:layout_editor_absoluteY="0dp"
         tools:targetApi="@drawable/usuario" />
 
-    <com.cursoandroid.cupidogari.helper.SlidingTabLayout
+   <!-- <com.cursoandroid.cupidogari.helper.SlidingTabLayout
         android:id="@+id/stl_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +33,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp" />-->
+    <fragment
+        android:id="@+id/list"
+        android:name="com.cursoandroid.orangebook.fragment.PerfilFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>
 

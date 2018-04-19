@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/orenge"
     android:orientation="vertical"
-    tools:context="com.cursoandroid.cupidogari.cupidogari.Cadastro_Activity"
+    tools:context="com.cursoandroid.orangebook.cupidogari.Cadastro_Activity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Cadastro"
+        android:text="@string/cadastro"
         android:textColor="@color/perfil"
         android:textAlignment="center"
         android:textSize="40sp" />
@@ -42,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="O campo foto não é obrigatório"
+                android:text="@string/o_campo_foto_n_o_obrigat_rio"
                 android:textColor="@android:color/background_light"
                 android:textSize="16sp" />
 
@@ -65,7 +66,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/usuario" />
+                    app:srcCompat="@drawable/usuario"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:id="@+id/retirar"
@@ -75,7 +77,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/edit_conversa"
                     android:padding="5sp"
-                    android:text="Colocar Foto"
+                    android:text="@string/colocar_foto"
                     android:textAlignment="center"
                     android:textColor="@android:color/background_light"
                     android:textSize="20sp" />
@@ -98,10 +100,12 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@drawable/edit"
-            android:hint="Digite seu nome"
+            android:hint="@string/digite_seu_nome"
             android:inputType="textAutoCorrect|textAutoComplete"
             android:paddingLeft="5dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:paddingStart="5dp"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -117,10 +121,11 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@drawable/edit"
-            android:hint="Digite seu e-mail"
+            android:hint="@string/digite_seu_e_mail"
             android:inputType="textEmailAddress"
             android:paddingLeft="5dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -136,10 +141,12 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@drawable/edit"
-            android:hint="Digite sua senha"
+            android:hint="@string/digite_sua_senha"
             android:inputType="textPassword"
             android:paddingLeft="5dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:paddingStart="5dp"
+            tools:ignore="RtlSymmetry" />
     </android.support.design.widget.TextInputLayout>
 
             <Space
@@ -154,18 +161,17 @@
 
         <Button
             android:id="@+id/btnSalvar"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/edit"
-            android:onClick="btnSalvar"
-            android:text="Salvar"
+            android:text="@string/salvar"
             tools:ignore="OnClick" />
     </LinearLayout>
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="10dp"
+                android:layout_height="0dp"
                 android:layout_weight="1" />
 </LinearLayout>
 </ScrollView>

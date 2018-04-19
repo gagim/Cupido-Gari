@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/orenge"
     android:orientation="vertical"
-    tools:context="com.cursoandroid.cupidogari.cupidogari.MainActivity"
+    tools:context="com.cursoandroid.orangebook.cupidogari.MainActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -16,7 +16,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/laranja_pequena" />
+        app:srcCompat="@drawable/laranja_pequena"
+        android:contentDescription="@string/todo" />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,13 +31,13 @@
         tools:layout_editor_absoluteY="0dp"
         tools:targetApi="@drawable/usuario" />
 
-    <com.cursoandroid.cupidogari.helper.SlidingTabLayout
+    <com.cursoandroid.orangebook.helper.SlidingTabLayout
         android:id="@+id/stl_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp"></com.cursoandroid.cupidogari.helper.SlidingTabLayout>
+        tools:layout_editor_absoluteY="0dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_pagina"

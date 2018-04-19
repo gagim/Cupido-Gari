@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/orenge"
-    tools:context="com.cursoandroid.cupidogari.cupidogari.ConversasActivity">
+    tools:context="com.cursoandroid.orangebook.cupidogari.ConversasActivity">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/laranja_pequena" />
+        app:srcCompat="@drawable/laranja_pequena"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/txtSemConversa"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        android:text="Você nâo possui conversas!"
+        android:text="@string/voc_n_o_possui_conversas"
         android:textColor="@color/textColorPrimary"
         android:textSize="20sp" />
 
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"></include>
+        tools:layout_editor_absoluteY="0dp" />
 
     <ListView
         android:id="@+id/lv_conversas"
@@ -40,7 +40,7 @@
         android:layout_above="@+id/mensagem"
         android:layout_below="@+id/tb_conversa"
         android:divider="@android:color/transparent"
-        android:padding="8dp"></ListView>
+        android:padding="8dp" />
 
     <LinearLayout
         android:id="@+id/mensagem"
@@ -52,20 +52,21 @@
 
         <EditText
             android:id="@+id/edit_conversas"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="50sp"
             android:layout_margin="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/edit_mensagem"
-            android:hint="Digite sua mensagem!"
+            android:hint="@string/digite_sua_mensagem"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textColorHint="@color/perfil"
             android:textIsSelectable="false"
-            android:theme="@style/TextLabel" />
+            android:theme="@style/TextLabel"
+            android:inputType="" />
 
         <ImageButton
             android:id="@+id/img_conversas"
@@ -74,7 +75,8 @@
             android:layout_margin="5dp"
             android:background="@drawable/edit_mensagem"
             android:src="@drawable/ic_send"
-            android:theme="@android:color/holo_orange_dark" />
+            android:theme="@android:color/holo_orange_dark"
+            android:contentDescription="@string/todo" />
 
     </LinearLayout>
 

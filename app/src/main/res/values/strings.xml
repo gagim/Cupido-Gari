@@ -10,4 +10,27 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="voc_n_o_possui_contatos">Você não possui contatos!</string>
+    <string name="todo">TODO</string>
+    <string name="novo_contato">Novo contato</string>
+    <string name="email">Email</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="voc_n_o_possui_conversas">Você nâo possui conversas!</string>
+    <string name="digite_sua_mensagem">Digite sua mensagem!</string>
+    <string name="perfil">Perfil</string>
+    <string name="nome">Nome</string>
+    <string name="e_mail">E-mail</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="logar">Logar</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="o_campo_foto_n_o_obrigat_rio">O campo foto não é obrigatório</string>
+    <string name="colocar_foto">Colocar Foto</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="digite_seu_e_mail">Digite seu e-mail</string>
+    <string name="digite_sua_senha">Digite sua senha</string>
+    <string name="salvar">Salvar</string>
+    <string name="voc_n_o_possui_mensagens">Você não possui Mensagens!</string>
+    <string name="mesagem">mesagem</string>
+    <string name="_00_00">00:00</string>
+    <string name="todo1">TODO</string>
 </resources>
