@@ -39,6 +39,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +54,8 @@ public class Cadastro_Activity extends AppCompatActivity {
     private Usuario usuario;
 
     Uri uriImagemUsuario;
+
+    private String dataConcatenada;
 
     private DatabaseReference firebabe;
 
@@ -76,6 +79,7 @@ public class Cadastro_Activity extends AppCompatActivity {
             }
         });
 
+
         btnSalvar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -96,6 +100,24 @@ public class Cadastro_Activity extends AppCompatActivity {
             }
         });
 
+        getDate();
+
+    }
+
+    private void getDate(){
+        Date date = new Date();
+        int hora = date.getHours();
+        int min  = date.getMinutes();
+        int dia = date.getDate();
+        int mes = date.getMonth()+1;
+        if(date.getMinutes() < 10) {
+            String minString = "0" + date.getMinutes();
+            dataConcatenada = dia +"/"+ mes + " as " + hora+":"+minString;
+            //Toast.makeText(getActivity(), dataConcatenada, Toast.LENGTH_SHORT).show();
+        }else {
+            dataConcatenada = dia +"/"+ mes + " as " + hora+":"+min;
+            //Toast.makeText(getActivity(), dataConcatenada, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void cadastrarUsuarioSemFoto() {
@@ -109,6 +131,7 @@ public class Cadastro_Activity extends AppCompatActivity {
         usuario.setNome(editNome.getText().toString() );
         usuario.setEmail(editEmail.getText().toString());
         usuario.setSenha(editSenha.getText().toString());
+        usuario.setAtt(dataConcatenada);
         usuario.setUrl("hue");
 
         FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
@@ -220,6 +243,7 @@ public class Cadastro_Activity extends AppCompatActivity {
     private void cadastrarUsuarioComFoto() {
         dialog = new ProgressDialog(this);
         dialog.setTitle("Salvando Dados...");
+        dialog.setMessage("Salvando Dados 0%");
         dialog.setCancelable(false);
         dialog.show();
 
@@ -227,6 +251,7 @@ public class Cadastro_Activity extends AppCompatActivity {
         usuario.setNome(editNome.getText().toString());
         usuario.setEmail(editEmail.getText().toString());
         usuario.setSenha(editSenha.getText().toString());
+        usuario.setAtt(dataConcatenada);
         usuario.setUrl("hue");
 
         String identificadorUsuario = Base64Custom.codificarBase64(usuario.getEmail());
@@ -266,6 +291,7 @@ public class Cadastro_Activity extends AppCompatActivity {
                             Map<String, Object> userUpdates = new HashMap<>();
                             userUpdates.put("nome", nome);
                             userUpdates.put("email", email);
+                            userUpdates.put("att",dataConcatenada);
                             userUpdates.put("url",url);
                             firebabe.updateChildren(userUpdates);
 

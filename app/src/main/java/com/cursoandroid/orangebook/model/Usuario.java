@@ -15,7 +15,12 @@ public class Usuario {
         referencia.child("usuarios").child(getId()).setValue( this );
     }
 
-    private String id,nome,senha,email,url;
+    private String id;
+    private String nome;
+    private String senha;
+    private String email;
+    private String url;
+    private String att;
 
     @Exclude
     public String getId() {
@@ -59,4 +64,11 @@ public class Usuario {
         this.url = url;
     }
 
+    public String getAtt() {
+        return att;
+    }
+
+    public void setAtt(String att) {
+        this.att = att;
+    }
 }

@@ -15,11 +15,11 @@
     </style>
 
     <style name="TextLabelContato" parent="Base.TextAppearance.AppCompat">
-        <item name="android:textColorHint">@color/perfil</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
         <item name="android:textSize">20sp</item>
-        <item name="colorAccent">@color/perfil</item>
-        <item name="colorControlNormal">@color/perfil</item>
-        <item name="colorControlActivated">@color/perfil</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
 </resources>

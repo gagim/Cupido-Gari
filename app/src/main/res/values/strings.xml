@@ -4,6 +4,7 @@
     <string name="item_pesquisa">pesquisar</string>
     <string name="item_add_pessoa">add</string>
     <string name="item_sair">Sair</string>
+    <string name="versao">1.0</string>
     <string name="title_activity_cadastro">Cadastro</string>
     <string name="title_activity_validacao_">Validacao_Activity</string>
     <string name="title_activity_main">MainActivity</string>
@@ -33,4 +34,9 @@
     <string name="mesagem">mesagem</string>
     <string name="_00_00">00:00</string>
     <string name="todo1">TODO</string>
+    <string name="sobre_o_aplicativo">Sobre o Aplicativo</string>
+    <string name="desenvolvedor_es">Desenvolvedor</string>
+    <string name="perguntador">Perguntador</string>
+    <string name="aplaudidor">Aplaudidor</string>
+    <string name="vers_o">Versão</string>
 </resources>

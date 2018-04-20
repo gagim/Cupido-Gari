@@ -1,8 +1,9 @@
 package com.cursoandroid.orangebook.cupidogari;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cursoandroid.orangebook.adapter.TabAdapter;
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth usuarioFirebase;
     private String identificadorContato;
     private DatabaseReference firebase;
+    private AlertDialog bui;
+
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -73,12 +78,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.sair:
-                deslogarUsuario();
+                mostrar();
+                return true;
+            case R.id.Sobre:
+                versao();
                 return true;
             case R.id.Perfil:
                 abrirPaginaPerfil();
@@ -171,30 +180,70 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void deslogarUsuario(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setTitle("Deseja sair?");
-        alertDialog.setPositiveButton("sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void mostrar(){
+        LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        @SuppressLint("InflateParams")
+        View view = li.inflate(R.layout.layout_universal, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        bui = alertDialog.create();
+        bui.setCancelable(false);
+        Button button = view.findViewById(R.id.btnSair);
+        Button button1= view.findViewById(R.id.btnCancelar);
+        LinearLayout linearLayout = view.findViewById(R.id.linear_sair);
+        linearLayout.setVisibility(View.VISIBLE);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 usuarioFirebase.signOut();
 
                 Intent intent = new Intent(MainActivity.this, Login_Activity.class);
                 startActivity(intent);
                 finish();
-
             }
         });
-        alertDialog.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
+            public void onClick(View view) {
+                bui.dismiss();
             }
         });
-        alertDialog.create();
-        alertDialog.show();
+
+        bui.setView(view);
+        bui.create();
+        bui.show();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void versao(){
+        LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        @SuppressLint("InflateParams")
+        View view = li.inflate(R.layout.layout_universal, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        bui = alertDialog.create();
+        TextView textView = view.findViewById(R.id.txtVersao);
+        TextView textView1 = view.findViewById(R.id.txtDesenvolvedor);
+        TextView textView2 = view.findViewById(R.id.txtPerguntador);
+        TextView textView3 = view.findViewById(R.id.txtAplaudidor);
+        LinearLayout linearLayout = view.findViewById(R.id.linear_sobre);
+        linearLayout.setVisibility(View.VISIBLE);
+
+        textView.setText(R.string.versao);
+        String desenvovedores = "Henrique da Silva Ferreira";
+        textView1.setText(desenvovedores);
+        String perguntador = "Douglas Lima Dias";
+        textView2.setText(perguntador);
+        String aplaudidor = "Vinicius de Sousa";
+        textView3.setText(aplaudidor);
+
+        bui.setView(view);
+        bui.create();
+        bui.show();
+    }
+
 
     @SuppressLint("ResourceType")
     private void abrirPaginaPerfil(){

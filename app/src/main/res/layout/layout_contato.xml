@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/edit_contato"
+    android:background="@drawable/edit_add_contato"
     android:orientation="vertical">
 
     <ImageView
@@ -12,29 +12,30 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/laranja_pequena"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/laranja_pequena" />
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/novo_contato"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/novo_contato"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
@@ -47,18 +48,18 @@
                 android:id="@+id/editEmailContato"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
-                android:background="@drawable/edit_conversa"
+                android:background="@drawable/edit_mensagem_direita"
                 android:hint="@string/email"
                 android:inputType="textAutoCorrect|textAutoComplete"
                 android:paddingLeft="5dp"
-                android:textAlignment="center"
                 android:paddingStart="5dp"
+                android:textAlignment="center"
                 tools:ignore="RtlSymmetry" />
         </android.support.design.widget.TextInputLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/btn_adicionar_contato"
@@ -70,8 +71,8 @@
             android:textColor="@color/laranja" />
 
         <Space
-        android:layout_width="wrap_content"
-        android:layout_height="10dp" />
-</LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+    </LinearLayout>
 
 </RelativeLayout>
